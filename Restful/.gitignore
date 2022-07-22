@@ -1,4 +1,7 @@
 # Byte-compiled / optimized / DLL files
+./api/migrations
+db.sqlite3
+.idea
 __pycache__/
 *.py[cod]
 *$py.class
