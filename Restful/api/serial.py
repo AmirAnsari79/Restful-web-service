@@ -10,8 +10,7 @@ class StoreSerializer(serializers.Serializer):
 
 
 # serializer using model
-from api.models import Store, Book
-
+from api.models import Store
 
 class StoreSerializerModel(serializers.ModelSerializer):
     class Meta:
@@ -22,10 +21,11 @@ class StoreSerializerModel(serializers.ModelSerializer):
 
 
 # serialized book fully
+from .models import Book
 class BookSerializer(serializers.Serializer):
     id = serializers.IntegerField()
-    title = serializers.CharField(max_length=100, allow_null=False, read_only=..., required=..., default=...,
-                                  validators=..., error_messages=..., )
+    title = serializers.CharField(max_length=100, allow_null=False, read_only=True, required=False, default=False,
+                                  validators=[], error_messages=False, )
     category = serializers.CharField(max_length=50, allow_null=True)
     publisher = serializers.CharField(max_length=100, allow_null=True)
     isbn = serializers.CharField(max_length=15, allow_null=True)

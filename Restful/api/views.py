@@ -82,6 +82,7 @@ def book_list(request):
 def book_detail(request, id):
     NotImplementedError()
 
+
 # # implement hyperlink with generic class
 # from rest_framework import generics
 # from .models import Book
@@ -95,3 +96,38 @@ def book_detail(request, id):
 #     queryset = Book.objects.all()
 #     serializer_class = BookSerializer
 #     lookup_field = "id"
+
+
+# APIVIEW
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .models import Store
+from .serial import StoreSerializer
+
+
+class StoreList(APIView):
+    def get(self, request, format=None):
+        store = Store.objects.all()
+        serializer = StoreSerializer(instance=store, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        pass
+
+    def put(self):
+        pass
+
+
+# mixin and genericview
+from .models import Store
+from .serial import StoreSerializer
+from rest_framework import mixins, generics
+
+
+class StoreListMixin(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = Store.objects.all()
+    serializer_class = StoreSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+

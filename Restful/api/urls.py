@@ -8,7 +8,9 @@ urlpatterns = [
     # hyperlink 🦷
     # path('book/', views.BookList.as_view(), ),
     # path('book/<int:id>', views.BookDetail.as_view(), ),
-    path('books/', views.book_list),
-    path('books/<int:id>', views.book_detail)
+    # path('books/', views.book_list),
+    # path('books/<int:id>', views.book_detail)
+    path('CBV/',views.StoreList.as_view()),
+    path('genericlistmixin/',views.StoreListMixin.as_view()),
 
 ]
